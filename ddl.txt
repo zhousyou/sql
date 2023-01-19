@@ -1,0 +1,66 @@
+DDL语句
+
+data definition language 数据定义语言
+
+数据库操作
+
+SHOW DATABASES;    
+
+SELECT DATABASE();
+
+CREATE DATABASE IF NOT EXISTS 数据库名;
+
+DROP DATABASE IF EXISTS 数据库名;
+
+USE 数据库名;
+
+
+
+
+表操作
+
+SHOW TABLES;
+
+DESC 表名；
+
+SHOW CREATE TABLE 表名;
+
+CREATE TABLE 表名(
+	字段 字段类型 COMMENT,
+	...,
+	...
+) COMMENT ;
+
+
+
+向表中添加字段
+
+ALTER TABLE 表名 ADD 字段名 类型;
+
+修改指定字段的数据类型
+
+ALTER TABLE 表名 MODIFY 字段名 新的数据类型;
+
+修改字段名和字段类型
+
+ALTER TABLE 表名 CHANGE 旧字段 新字段 数据类型;
+
+删除表中的字段名
+
+ALTER TABLE 表名 DROP 字段名;
+
+修改表名
+
+ALTER TABLE 表名 RENAME TO 新表名;
+
+删除表
+
+DROP TABLE [IF EXISTS] 表名;
+
+删除指定表，并重新创建
+
+TRUNCATE TABLE 表名;
+
+
+
+

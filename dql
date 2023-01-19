@@ -1,0 +1,92 @@
+dql 
+
+data query language 数据查询语言
+
+基本查询：
+SELECT 
+	字段列表
+FROM
+	表名列表
+
+select 字段名1,字段名2,... from 表名；
+
+select * from 表名;
+
+select distinct 字段名 from 表名; //去重查询
+
+select 字段名 as 别名 from 表名;  //起别名
+
+
+
+
+条件查询：
+WHERE
+	条件列表
+select 字段列表 from 表名 where 条件列表;
+条件可以比较运算符：
+	between ... and ... 
+	in(...)  在in之后的列表中的值， 多选一
+	like 占位符 	模糊匹配 _代表单个字符，%任意字符
+	is null 
+逻辑运算符：
+	and &&
+	or ||
+	not !
+
+
+
+聚合函数：
+	count  统计数量
+	max    最大值
+	min    最小值
+	avg    均值
+	sum    求和
+
+select 聚合函数(字段列表）from 表名；
+null值不参与聚合函数运算
+
+分组查询：
+GROUP BY
+	分组字段列表
+HAVING
+	分组后条件列表
+
+select 字段列表 from 表名 where 条件 group by 分组字段名 having 分组后过滤条件
+
+where和having的区别：
+1.执行时机不同：where分组前过滤，having分组后过滤
+2.判断条件不同：where中不可使用聚合函数， having中可以使用聚合函数
+
+select workaddress, count(*) from emp where age<45 group by workaddress having count(id)>3;
+
+排序查询：
+ORDER BY
+	排序字段列表
+
+select 字段列表 from 表名 order by 字段1 排序方式1，字段2 排序方式2；
+
+排序方式：
+	asc:升序（默认值）
+	desc:降序
+
+
+分页查询： 
+LIMIT
+	分页参数
+
+Select 字段列表 from 表名 limit 起始索引,查询记录数
+
+起始索引从0开始，起始索引=（查询页码-1）*每页显示记录数
+分页查询是数据库的方言，不同的数据库有不同的实现方式，mysql中是limit
+如果查询的是第一页的数据，起始索引可以省略，简写为limit 10  
+
+
+
+Exe:
+
+1. Select * from emp where gender='female' and age in (20,21,22);
+2. Select * from emp where gender='male' && age between 20 and 40 && name='___';
+3. Select gender, count(*) from emp where age <60 group by gender;
+4. Select name, age from age where age <= 35 order by age asc ,entrydate desc;
+5. Select * from emp where gender='male', age between 20 and 40 order by age, entry date desc limit 5 ;
+
